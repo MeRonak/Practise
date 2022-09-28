@@ -1,5 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
+#define v vector<int>
+#define ll long long
 int main(){
 int T; 
 cin>>T; 
@@ -7,42 +9,32 @@ while(T--)
 {
     int n; 
     cin>>n; 
-    unordered_map<int, int> arr; 
-    arr.clear(); 
-    int random=-1;
-    int flag = true;
-    while(n-- && flag)
+    vector<int> arr(n,0);
+    for(int i = 0; i<n; ++i)
     {
         int temp; 
-        cin>>temp;
-        arr[temp]++;
-        if(arr[temp] >= 2)
+        cin>>temp; 
+        arr[i]  = temp;
+    }
+    bool flag = false;
+    for(int i = 0; i< n; ++i)
+    {
+        for(int j = i+2; j<n; ++j)
         {
-            if(arr[temp]>=3)
+            if(arr[i] == arr[j])
             {
                 cout<<"YES"<<endl;
-                arr.clear();
-                flag = false; 
-                continue;
+                flag = true;
+                break;
             }
-            else{
-                if(temp != random)
-                {
-                    cout<<"YES"<<endl;
-                    arr.clear();
-                    flag = false;
-                    continue;
-                }
-            }
-        }  
-        random = temp;
+        }
+        if(flag)
+        {
+            break;
+        }
     }
-    if(flag){
-    cout<<"NO"<<endl;
-    arr.clear();
-    }
-    // flag = true;  
+    if(!flag){
+    cout<<"NO"<<endl;}
 }
-
 return 0;
 }
